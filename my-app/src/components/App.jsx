@@ -12,16 +12,18 @@ export default class App extends Component{
   }
 
   handleAdd(e) {
-    console.log(e.target.title.value);
     e.preventDefault();
+    this.state.todo.push({ title: e.target.title.value });
+    this.setState({ todo: this.state.todo });
+    e.target.title.value = '';
   }
   render() {
     return (
       <div className="siimple-box siimple--bg-dark">
         <h1 className="simple-box-title siimple--color-white">Reackt Todo App</h1>
-        <Form />
+        <Form handleAdd={this.handleAdd}/>
         <div className="siimple-rule"></div>
-        <List/>
+        <List todos={this.state.todo}/>
       </div>
     );
   }
